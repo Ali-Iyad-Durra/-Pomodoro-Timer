@@ -1,0 +1,64 @@
+<Window x:Class="ModernPomodoro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pomodoro" Height="450" Width="350"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border x:Name="MainBorder" Background="#F8FAFC" CornerRadius="25">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="25" ShadowDepth="0" Color="Black" Opacity="0.15"/>
+        </Border.Effect>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="20,15,15,0">
+                <TextBlock x:Name="TxtDeveloper" Text="By Ali Durra" Foreground="#94A3B8" FontSize="11" FontWeight="Medium" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="🌙" x:Name="BtnTheme" Width="30" Height="30" Click="BtnTheme_Click" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" Foreground="#64748B"/>
+                    <Button Content="▢" x:Name="BtnMax" Width="30" Height="30" Click="BtnMax_Click" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" Foreground="#64748B"/>
+                    <Button Content="✕" x:Name="BtnClose" Width="30" Height="30" Click="BtnClose_Click" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" Foreground="#64748B"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Ellipse x:Name="TimerRing" Stroke="#E2E8F0" StrokeThickness="8" Width="210" Height="210"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtStatus" Text="FOCUS" FontSize="13" FontWeight="Bold" Foreground="#94A3B8" HorizontalAlignment="Center" LetterSpacing="3"/>
+                    <TextBlock x:Name="TxtTimer" Text="25:00" FontSize="52" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,40">
+                <Button x:Name="BtnStart" Content="Start" Style="{StaticResource ModernButtonStyle}" Background="#6366F1" Click="BtnStart_Click"/>
+                <Button x:Name="BtnReset" Content="Reset" Style="{StaticResource ModernButtonStyle}" Background="#E2E8F0" Foreground="#1E293B" Click="BtnReset_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
